@@ -1,5 +1,5 @@
-DEPENDPATH  += .
-INCLUDEPATH += .
+DEPENDPATH  += $$PWD/
+INCLUDEPATH += $$PWD/
 
 # Input
 HEADERS += $$PWD/QJsonArray.h        \

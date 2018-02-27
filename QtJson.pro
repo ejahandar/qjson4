@@ -2,7 +2,7 @@
 TEMPLATE = app
 TARGET   = test
 
-include($$PWD/QJson4.pri)
+include($$PWD/QtJson.pri)
 
 SOURCES += main.cpp
 
