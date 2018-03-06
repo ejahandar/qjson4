@@ -196,6 +196,7 @@ QString QJsonDocument::escapeString(const QString &s) const {
 	return r;
 }
 
+
 //------------------------------------------------------------------------------
 // Name: toJson
 //------------------------------------------------------------------------------
@@ -247,17 +248,27 @@ QString QJsonDocument::toJson(const QJsonValue &v, JsonFormat format) const {
 		{
 			const QJsonObject o = v.toObject();
 			ss << "{";
+
+			if(format == Indented)
+				ss << '\n';
+
 			if(!o.empty()) {
 				QJsonObject::const_iterator it = o.begin();
 				QJsonObject::const_iterator e  = o.end();
 
-				ss << '"' << escapeString(it.key()) << "\": " << toJson(it.value(), format);
+				ss  << '"' << escapeString(it.key()) << "\": " << toJson(it.value(), format);
 				++it;
 				for(;it != e; ++it) {
 					ss << ',';
-					ss << '"' << escapeString(it.key()) << "\": " << toJson(it.value(), format);
+
+					if(format == Indented)
+						ss << '\n';
+
+					ss  << '"' << escapeString(it.key()) << "\": " << toJson(it.value(), format);
 				}
 			}
+			if(format == Indented)
+				ss << '\n';
 			ss  << "}";
 		}
 		break;
